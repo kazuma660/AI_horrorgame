@@ -46,6 +46,13 @@ export default function Scene() {
     }
   };
 
+  // 画面全体クリックで次へ（fadeBlack中でも進める）
+  const handleScreenClick = () => {
+    // 選択肢表示中はスクリーンクリックを無効化
+    if (showChoices) return;
+    handleNext();
+  };
+
   const handleChoice = (choice: Choice) => {
     if (choice.setFlag) {
       setFlag(choice.setFlag, true);
@@ -62,7 +69,10 @@ export default function Scene() {
   };
 
   return (
-    <div className={getContainerClassName()}>
+    <div
+      className={getContainerClassName()}
+      onClick={handleScreenClick}
+    >
       {/* Background image or gradient */}
       <div 
         className="absolute inset-0 -z-10 transition-all duration-1000 bg-center bg-cover bg-no-repeat"
@@ -76,6 +86,13 @@ export default function Scene() {
       )}
       
       <EffectLayer effect={node.effect} />
+
+      {/* 暗転中でも「クリックで次へ」がわかるよう薄くガイド表示 */}
+      {node.effect === 'fadeBlack' && !showChoices && (
+        <div className="absolute bottom-8 w-full flex justify-center z-50 pointer-events-none">
+          <span className="text-white/30 text-sm animate-pulse tracking-widest">- クリックして続ける -</span>
+        </div>
+      )}
       
       <TextBox text={node.text} onComplete={handleNext} />
       
