@@ -1,6 +1,17 @@
+'use client';
+
 import Link from 'next/link';
+import { useGameStore } from '@/lib/store';
+import { useEffect } from 'react';
 
 export default function TitlePage() {
+  const setCurrentId = useGameStore((state) => state.setCurrentId);
+
+  useEffect(() => {
+    // タイトルに戻ってきたら最初からにリセットする
+    setCurrentId('start');
+  }, [setCurrentId]);
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-950 text-white px-4 text-center overflow-hidden relative">
       <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />

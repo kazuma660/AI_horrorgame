@@ -119,7 +119,10 @@ export const scenario: SceneNode[] = [
   {
     id: 'ignore_3',
     text: '送られてきたのは1枚の画像。\n……私の部屋の、玄関のドアを外から撮った写真だ。',
-    next: 'ignore_4',
+    choices: [
+      { label: '画像をよく見る', next: 'hidden_1' },
+      { label: 'そのまま見過ごす', next: 'ignore_4' },
+    ],
   },
   {
     id: 'ignore_4',
@@ -219,5 +222,40 @@ export const scenario: SceneNode[] = [
     text: 'だが、机の上には……\nさっきまでベッドで寝ていた自分の顔写真が、ご丁寧に現像されて置かれていた。',
     effect: 'glitch',
     ending: 'true',
+  },
+  {
+    id: 'hidden_1',
+    text: '送られてきた画像をよく見ると……窓ガラスに反射して、相手の顔がうっすらと写っている。',
+    background: '/bg/dark_room.png',
+    next: 'hidden_2',
+  },
+  {
+    id: 'hidden_2',
+    text: '『あなたの顔、窓に写ってるよ』と返信した。',
+    next: 'hidden_3',
+  },
+  {
+    id: 'hidden_3',
+    text: 'ピタリとドアの音が止んだ。',
+    bgm: '/bgm/silence.wav',
+    next: 'hidden_4',
+  },
+  {
+    id: 'hidden_4',
+    text: '『……見つけた』',
+    se: '/se/notification.wav',
+    next: 'hidden_5',
+  },
+  {
+    id: 'hidden_5',
+    text: '直後、自分の部屋の「クローゼットの中」からスマホの着信音が鳴り響いた。',
+    effect: 'shake',
+    next: 'hidden_6',
+  },
+  {
+    id: 'hidden_6',
+    text: '外にいると思わせて、実は最初から中にいたのだ。',
+    effect: 'fadeBlack',
+    ending: 'hidden',
   }
 ];
