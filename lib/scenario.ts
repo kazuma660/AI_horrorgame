@@ -4,7 +4,7 @@ export const scenario: SceneNode[] = [
   {
     id: 'start',
     text: '深夜2時。ベッドに横たわり、スマホの画面を漫然とスクロールしている。',
-    background: '/bg/dark_room.png',
+    background: '/bg/bed_phone.png',
     effect: 'noise',
     bgm: '/bgm/silence.wav', // dummy
     next: 'node1',
@@ -90,7 +90,7 @@ export const scenario: SceneNode[] = [
   {
     id: 'door_check6',
     text: 'ドンドンドンドンドンドンドンドンドンドン！！！！！！',
-    background: '/bg/peephole.png',
+    background: '/bg/peephole_woman.png',
     effect: 'shake',
     se: '/se/bang.wav',
     next: 'door_choice',
