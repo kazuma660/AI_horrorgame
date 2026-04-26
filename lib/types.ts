@@ -18,6 +18,8 @@ export type SceneNode = {
   next?: string;         // 次の id（choices がない場合）
   choices?: Choice[];    // 選択肢
   ending?: string;       // ここでエンディングへ（id を渡す）
+  timeout?: number;      // ms: この時間クリックしないと timeoutNext へ強制移動
+  timeoutNext?: string;  // タイムアウト時の遷移先 id
 };
 
 export type GameState = {

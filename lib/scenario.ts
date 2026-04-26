@@ -107,6 +107,8 @@ export const scenario: SceneNode[] = [
     id: 'branch_ignore',
     text: '誰かのイタズラだろう。無視して電気を消し、目を閉じた。',
     effect: 'fadeBlack',
+    timeout: 6000,        // 6秒クリックしなかったら強制BAD END
+    timeoutNext: 'timeout_bad',
     next: 'ignore_2',
   },
   {
@@ -176,6 +178,14 @@ export const scenario: SceneNode[] = [
   {
     id: 'bed_hide6',
     text: '勢いよく布団が剥がされた。',
+    background: '/bg/blanket_scare.png',
+    effect: 'flash',
+    ending: 'bad',
+  },
+  {
+    id: 'timeout_bad',
+    text: '……そこに隠れても、無駄だよ。',
+    background: '/bg/blanket_scare.png',
     effect: 'flash',
     ending: 'bad',
   },

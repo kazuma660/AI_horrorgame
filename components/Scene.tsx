@@ -30,6 +30,15 @@ export default function Scene() {
     }
   }, [currentId, playBGM, playSE]);
 
+  // タイムアウトロジック: timeout が設定されているノードは一定時間後に強制遷移
+  useEffect(() => {
+    if (!node?.timeout || !node?.timeoutNext) return;
+    const timer = setTimeout(() => {
+      setCurrentId(node.timeoutNext!);
+    }, node.timeout);
+    return () => clearTimeout(timer);
+  }, [node, setCurrentId]);
+
   if (!node) return null;
 
   const handleNext = () => {
