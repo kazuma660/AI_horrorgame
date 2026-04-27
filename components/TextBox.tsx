@@ -38,7 +38,7 @@ export default function TextBox({ text, onComplete }: Props) {
 
   return (
     <div 
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 w-11/12 max-w-3xl bg-black/80 border border-white/20 p-6 rounded-lg cursor-pointer text-white min-h-[160px]"
+      className="absolute bottom-8 left-1/2 -translate-x-1/2 w-11/12 max-w-3xl bg-black/80 border border-white/20 p-6 rounded-lg cursor-pointer text-white min-h-[160px] z-50"
       onClick={handleClick}
     >
       <p className="text-xl leading-relaxed">{displayedText}</p>

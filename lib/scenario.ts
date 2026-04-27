@@ -4,7 +4,7 @@ export const scenario: SceneNode[] = [
   {
     id: 'start',
     text: '深夜2時。ベッドに横たわり、スマホの画面を漫然とスクロールしている。',
-    background: '/bg/bed_phone.png',
+    background: '/bg/scene1_bed_scroll.png',
     effect: 'noise',
     bgm: '/bgm/silence.wav', // dummy
     next: 'node1',
@@ -12,13 +12,14 @@ export const scenario: SceneNode[] = [
   {
     id: 'node1',
     text: '突然、見知らぬアカウントからDMが届いた。',
-    background: '/bg/dark_room.png',
+    background: '/bg/scene2_dm_notification.png',
     se: '/se/notification.wav',
     next: 'node2',
   },
   {
     id: 'node2',
     text: '『遅くまで起きてるんだね』\n『スマホの光で、顔が青く照らされてるよ』',
+    background: '/bg/scene3_dm_stalker.png',
     next: 'choice1',
   },
   {
@@ -32,6 +33,7 @@ export const scenario: SceneNode[] = [
   {
     id: 'branch_reply',
     text: '震える指で『誰ですか？』とメッセージを送った。',
+    background: '/bg/scene_typing_reply.png',
     next: 'reply_2',
   },
   {
@@ -43,9 +45,9 @@ export const scenario: SceneNode[] = [
   },
   {
     id: 'reply_3',
-    text: 'その直後、玄関の方から「ガチャ、ガチャ」とドアノブを回す音が聞こえた。',
+    text: 'その直後、ピンポーンとインターホンが鳴り響いた。\nそして玄関の方から「ガチャ、ガチャ」とドアノブを回す音が聞こえた。',
     background: '/bg/dark_room.png',
-    effect: 'shake',
+    effect: 'intercom',
     se: '/se/doorknob.wav',
     next: 'reply_choice',
   },

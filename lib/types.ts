@@ -1,4 +1,4 @@
-export type Effect = 'shake' | 'flash' | 'glitch' | 'fadeBlack' | 'noise';
+export type Effect = 'shake' | 'flash' | 'glitch' | 'fadeBlack' | 'noise' | 'intercom';
 
 export type Choice = {
   label: string;

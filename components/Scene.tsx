@@ -15,7 +15,7 @@ export default function Scene() {
   const currentId = useGameStore((state) => state.currentId);
   const setCurrentId = useGameStore((state) => state.setCurrentId);
   const setFlag = useGameStore((state) => state.setFlag);
-  const { playBGM, playSE } = useAudio();
+  const { playBGM, playSE, playIntercom } = useAudio();
 
   const [node, setNode] = useState<SceneNode | undefined>(undefined);
   const [showChoices, setShowChoices] = useState(false);
@@ -27,8 +27,9 @@ export default function Scene() {
       setShowChoices(false);
       if (currentNode.bgm) playBGM(currentNode.bgm);
       if (currentNode.se) playSE(currentNode.se);
+      if (currentNode.effect === 'intercom') playIntercom();
     }
-  }, [currentId, playBGM, playSE]);
+  }, [currentId, playBGM, playSE, playIntercom]);
 
   // タイムアウトロジック: timeout が設定されているノードは一定時間後に強制遷移
   useEffect(() => {
@@ -70,7 +71,7 @@ export default function Scene() {
   };
 
   const getContainerClassName = () => {
-    let className = "relative w-full h-screen overflow-hidden bg-zinc-950 text-white transition-colors duration-1000";
+    let className = "relative w-full h-screen overflow-hidden text-white transition-colors duration-1000";
     if (node.effect === 'shake') {
       className += " animate-[shake_0.2s_ease-in-out_infinite]";
     }
@@ -82,16 +83,16 @@ export default function Scene() {
       className={getContainerClassName()}
       onClick={handleScreenClick}
     >
-      {/* Background image or gradient */}
+      {/* Background image — z-0 so text/effects can layer above */}
       <div 
-        className="absolute inset-0 -z-10 transition-all duration-1000 bg-center bg-cover bg-no-repeat"
+        className="absolute inset-0 z-0 transition-all duration-1000 bg-center bg-cover bg-no-repeat"
         style={{
           backgroundImage: node.background ? `url(${node.background})` : 'none',
-          backgroundColor: node.background ? 'transparent' : 'black'
+          backgroundColor: node.background ? 'black' : 'black'
         }}
       />
       {!node.background && (
-        <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 to-black -z-10" />
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-zinc-900 to-black" />
       )}
       
       <EffectLayer effect={node.effect} />
